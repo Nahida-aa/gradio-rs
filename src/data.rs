@@ -82,7 +82,7 @@ fn preprocess_data_helper<'a>(
     http_client: &'a reqwest::Client,
     api_root: &'a str,
     data: Vec<PredictionInput>,
-) -> Pin<Box<dyn Future<Output = Result<Vec<serde_json::Value>>> + 'a>> {
+) -> Pin<Box<dyn Future<Output = Result<Vec<serde_json::Value>>> + Send + 'a>> {
     Box::pin(async move {
         let mut inputs = vec![];
         for d in data {
